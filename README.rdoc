@@ -1,0 +1,4 @@
+Simple web application for sigma ukraine
+
+
+rake db:migrate RAILS_ENV=development

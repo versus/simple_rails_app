@@ -1,0 +1,16 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<span class="email"><input type="email"  id="user_email" name="user[email]"  placeholder="enter your email address"></span>
+<span class="subscribe"><button class="btn btn-warning pull-right" type="submit">SAVE</button></span>
+<% end %>
+
