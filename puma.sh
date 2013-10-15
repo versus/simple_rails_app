@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Simple move this file into your Rails `script` folder. Also make sure you `chmod +x puma.sh`.
+# Simple move this file into your Rails folder. Also make sure you `chmod +x puma.sh`.
 # Please modify the CONSTANT variables to fit your configurations.
 
 # The script will start with config set by $PUMA_CONFIG_FILE by default
@@ -35,7 +35,8 @@ case "$1" in
     if [ -e $PUMA_CONFIG_FILE ] ; then
       bundle exec puma --config $PUMA_CONFIG_FILE
     else
-      bundle exec puma --daemon --bind unix://$PUMA_SOCKET --pidfile $PUMA_PID_FILE
+#      bundle exec puma --pidfile $PUMA_PID_FILE -e production
+      bundle exec puma --daemon  -e production --pidfile $PUMA_PID_FILE 
     fi
 
     echo "done"
@@ -66,10 +67,10 @@ case "$1" in
     fi
 
     echo "Trying cold reboot"
-    script/puma.sh start
+    ./puma.sh start
     ;;
 
   *)
-    echo "Usage: script/puma.sh {start|stop|restart}" >&2
+    echo "Usage: ./puma.sh {start|stop|restart}" >&2
     ;;
 esac
